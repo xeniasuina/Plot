@@ -1,5 +1,4 @@
-namespace Plot
-{
+namespace Plot { 
     internal static class Program
     {
         /// <summary>
