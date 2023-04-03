@@ -20,8 +20,8 @@ namespace Функция
         public static bool GetFunction(string input) //Получаем функцию и переводим ее в обратную польскую запись
         {
             func = input;
-            Stack<char> operators = new Stack<char>(); //Здесь храним операторы
-            string result = string.Empty; //Результат
+            var operators = new Stack<char>(); //Здесь храним операторы
+            var result = string.Empty; //Результат
             char prev = '!'; //Предыдущий символ
 
             for (int i = 0; i < input.Length; i++) //Проходимся во всем символам
@@ -128,11 +128,11 @@ namespace Функция
         {
             switch (c)
             {
-                case '(': return 0;
+                case '(':
                 case ')': return 0;
-                case '+': return 1;
+                case '+':
                 case '-': return 1;
-                case '*': return 2;
+                case '*':
                 case '/': return 2;
                 case '^': return 3;
             }
@@ -141,7 +141,7 @@ namespace Функция
         public static double FuncValue(double x) //Значение функции в точке
         {
             double result = 0;
-            Stack<double> tmp = new Stack<double>();
+            var tmp = new Stack<double>();
             string funcInX;
             if (x >= 0) funcInX = funcRPN.Replace("x", x.ToString());
             else funcInX = funcRPN.Replace("x", "0 " + (-x).ToString() + " -");
