@@ -1,4 +1,4 @@
-﻿namespace Функция
+﻿namespace Plot
 {
     partial class Error
     {
