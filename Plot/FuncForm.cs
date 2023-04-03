@@ -1,4 +1,4 @@
-namespace Функция
+namespace Plot
 {
     public partial class FuncForm : Form
     {
