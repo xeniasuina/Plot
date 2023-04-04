@@ -12,9 +12,6 @@
         public Form1()
         {
             InitializeComponent();
-            
-
-
         }
        
         private void pic_MouseMove(object sender, MouseEventArgs e)
