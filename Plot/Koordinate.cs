@@ -8,42 +8,6 @@ namespace Plot
 {
     internal static class Koordinate
     {
-        /*private double x_dek;
-        private double y_dek;
-        public double X_dek
-        {
-            get { return x_dek; }
-            set { x_dek = value; }
-        }
-        public double Y_dek
-        {
-            set { y_dek = value; }
-            get { return y_dek; }
-        }
-        private int x_ekr;
-        private int y_ekr;
-        public int X_ekr
-        {
-            get { return x_ekr; }
-            set { x_ekr = value; }
-        }
-        public int Y_ekr
-        {
-            set { y_ekr = value; }
-            get { return y_ekr; }   
-        }*/
-       /* private int pix_in_one_x = 1;
-        private int pix_in_one_y = 1;
-        public Koordinate(double x_dek, double y_dek, int x_ekr, int y_ekr,int pix_in_one_x,int pix_in_one_y)
-        {
-            X_dek = x_dek;
-            Y_dek = y_dek;
-            X_ekr = x_ekr;
-            Y_ekr = y_ekr;
-            this.pix_in_one_x = pix_in_one_x;
-            this.pix_in_one_y = pix_in_one_y;
-            
-        }*/
        public static int Convert_To_X_ekr(double x_dek,string minx_dek,string maxx_dek,PictureBox pic)
         {
             int pix_in_one_x;

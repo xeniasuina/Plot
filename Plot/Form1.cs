@@ -16,10 +16,7 @@
 
 
         }
-        //int pix_in_one_x = 1;
-        //Bitmap map = new Bitmap(100, 100);
-        //Graphics g;
-        //Koordinate Koord = new Koordinate(0, 0, 0, 0,1,1);
+       
         private void pic_MouseMove(object sender, MouseEventArgs e)
         {
             
@@ -28,11 +25,6 @@
             dek_y.Text =Koordinate.Convert_To_Y_dek(e.Y,miny_dek.Text,maxy_dek.Text,pic).ToString();
             ekr_x.Text = e.X.ToString();
             dek_x.Text = Koordinate.Convert_To_X_dek(e.X, minx_dek.Text, maxx_dek.Text, pic).ToString();
-
-
-            //map.SetPixel(e.X, e.Y, Color.Black);
-            //setpixel();
-
 
         }
 
@@ -50,9 +42,10 @@
                 chart1.Series[0].Points.AddXY(x, y);
             }
         }
-    
+
         private void textBox1_TextChanged(object sender, EventArgs e)
-        { if (textBox1.Text != ""& textBox1.Text != "-")
+        {
+            if (textBox1.Text != "" & textBox1.Text != "-")
             {
                 double x_dek = Convert.ToDouble(textBox1.Text);
                 string minx = minx_dek.Text;
@@ -61,9 +54,6 @@
                 rrr.Text = x_ekr.ToString();
             }
         }
-
-        
-        
     }
 }
 
