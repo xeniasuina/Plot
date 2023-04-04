@@ -19,7 +19,7 @@
         int pix_in_one_x = 1;
         Bitmap map = new Bitmap(100, 100);
         Graphics g;
-        Koordinate Koord = new Koordinate(0, 0, 0, 0);
+        Koordinate Koord = new Koordinate(0, 0, 0, 0,1,1);
         private void pic_MouseMove(object sender, MouseEventArgs e)
         {
             
