@@ -16,9 +16,9 @@
 
 
         }
-        int pix_in_one_x = 1;
-        Bitmap map = new Bitmap(100, 100);
-        Graphics g;
+        //int pix_in_one_x = 1;
+        //Bitmap map = new Bitmap(100, 100);
+        //Graphics g;
         Koordinate Koord = new Koordinate(0, 0, 0, 0,1,1);
         private void pic_MouseMove(object sender, MouseEventArgs e)
         {
@@ -51,26 +51,18 @@
             }
         }
     
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        /*private void textBox1_TextChanged(object sender, EventArgs e)
         { if (textBox1.Text != "")
             {
                 double x_dek = Convert.ToDouble(textBox1.Text);
                 string minx = minx_dek.Text;
                 string maxx = maxx_dek.Text;
                 int x_ekr = Koord.Convert_To_X_ekr(x_dek, minx, maxx, pic);
-                label2.Text = x_ekr.ToString();
+                dek_y.Text = x_ekr.ToString();
             }
-        }
+        }*/
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void xxx_Click(object sender, EventArgs e)
-        {
-
-        }
+        
         
     }
 }
