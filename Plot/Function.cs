@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Plot
+﻿namespace Plot
 {
-    internal static class Function
+    public static class Function
     {
         private static string func = string.Empty; //Функция до перевода в обратную польскую запись
         private static string funcRPN = string.Empty; //Функция после перевода в обратную польскую запись

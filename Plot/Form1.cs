@@ -1,55 +1,163 @@
-﻿namespace Plot
+﻿using Plot.Enums;
+
+namespace Plot
 {
     public partial class Form1 : Form
     {
-        double x1 = -10;
-        double x2 = 10;
-        double h = 0.1;
-        double func(double x)
-        {
-            return Math.Pow(x,2);
-        }
+        private Graphics _graphics;
+        private Painter _painter;
+
         public Form1()
         {
             InitializeComponent();
-        }
-       
-        private void pic_MouseMove(object sender, MouseEventArgs e)
-        {
-            
-            
-            ekr_y.Text = e.Y.ToString();
-            dek_y.Text =Koordinate.Convert_To_Y_dek(e.Y,miny_dek.Text,maxy_dek.Text,pic).ToString();
-            ekr_x.Text = e.X.ToString();
-            dek_x.Text = Koordinate.Convert_To_X_dek(e.X, minx_dek.Text, maxx_dek.Text, pic).ToString();
+            _graphics = plot.CreateGraphics();
+            _painter = new Painter(_graphics);
 
+            InitializeUserComponents();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void InitializeUserComponents()
         {
+            object[] types = { CalculationType.LeftRectandgleMethod.GetString(), CalculationType.RightRectangleMethod.GetString(), CalculationType.CentralRectanleMethod.GetString(),
+                CalculationType.TrapeziumMethod.GetString(), CalculationType.SimpsonMethod.GetString() };
 
+            typeCombo.Items.AddRange(types);
+
+            button2.Enabled = false;
+
+            Converter.Size = plot.Size;
+            Converter.XMin = Convert.ToDouble(xMinNUD.Value);
+            Converter.XMax = Convert.ToDouble(xMaxNUD.Value);
+
+            Converter.YMin = Convert.ToDouble(yMinNUD.Value);
+            Converter.YMax = Convert.ToDouble(yMaxNUD.Value);
+
+            _painter.Repaint();
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            Converter.Size = plot.Size;
+            _painter.Repaint();
+        }
+
+        private void plot_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolStripStatusLabel1.Text = "XCrt: " + Math.Round(Converter.XScr2Crt(e.X), 2);
+            toolStripStatusLabel2.Text = "YCrt: " + Math.Round(Converter.YScr2Crt(e.Y), 2);
+
+            toolStripStatusLabel3.Text = "XScr: " + Converter.XCrt2Scr(Converter.XScr2Crt(e.X));
+            toolStripStatusLabel4.Text = "YScr: " + Converter.YCrt2Scr(Converter.YScr2Crt(e.Y));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            _painter.DrawFunction();
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            _painter.Repaint();
+        }
+
+        private void xMinNUD_ValueChanged(object sender, EventArgs e)
+        {
+            Converter.XMin = Convert.ToDouble(xMinNUD.Value);
+            _painter.Repaint();
+        }
+
+        private void xMaxNUD_ValueChanged(object sender, EventArgs e)
+        {
+            Converter.XMax = Convert.ToDouble(xMaxNUD.Value);
+            _painter.Repaint();
+        }
+
+        private void yMinNUD_ValueChanged(object sender, EventArgs e)
+        {
+            Converter.YMin = Convert.ToDouble(yMinNUD.Value);
+            _painter.Repaint();
+        }
+
+        private void yMaxNUD_ValueChanged(object sender, EventArgs e)
+        {
+            Converter.YMax = Convert.ToDouble(yMaxNUD.Value);
+            _painter.Repaint();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            _painter.Repaint();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            chart1.Series[0].Points.Clear();
-            for (double x = x1; x<= x2; x+=h) 
+            var input = funcTextBox.Text;
+
+            if (string.IsNullOrEmpty(input))
             {
-                double y = func(x);
-                chart1.Series[0].Points.AddXY(x, y);
+                return;
+            }
+
+            if (Function.GetFunction(input))
+            {
+                polkTextBox.Text = Function.FuncRPN;
+                _painter.Function = Function.FuncValue;
+                _painter.Repaint();
+
+                IntegralCalculation.Function = Function.FuncValue;
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != "" & textBox1.Text != "-")
+            if (typeCombo.SelectedIndex == -1)
             {
-                double x_dek = Convert.ToDouble(textBox1.Text);
-                string minx = minx_dek.Text;
-                string maxx = maxx_dek.Text;
-                int x_ekr = Koordinate.Convert_To_X_ekr(x_dek, minx, maxx, pic);
-                rrr.Text = x_ekr.ToString();
+                return;
             }
+
+            if (string.IsNullOrEmpty(aBox.Text) || string.IsNullOrEmpty(bBox.Text) || string.IsNullOrEmpty(nBox.Text))
+            {
+                return;
+            }    
+
+            var a = Convert.ToDouble(aBox.Text);
+            var b = Convert.ToDouble(bBox.Text);
+            var n = Convert.ToInt32(nBox.Text);
+
+            _painter.DrawArea(a, b);
+
+            var selected = typeCombo.SelectedItem.ToString();
+            var result = 0.0;
+            switch (selected) 
+            {
+                case "Метод левых прямоугольников":
+                    result = IntegralCalculation.LeftRectangle(a, b, n);
+                    break;
+                case "Метод правых прямоугольников":
+                    result = IntegralCalculation.RightRectangle(a, b, n);
+                    break;
+                case "Метод центральных прямоугольников":
+                    result = IntegralCalculation.CentralRectangle(a, b, n);
+                    break;
+                case "Метод трапеций":
+                    result = IntegralCalculation.TrapeziumMethod(a, b, n);
+                    break;
+                case "Метод Симпсона":
+                    result = IntegralCalculation.SimpsonMethod(a, b, n);
+                    break;
+            }
+
+            integralResultBox.Text = Math.Round(result, 5).ToString();
+        }
+
+        private void typeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (typeCombo.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            button2.Enabled = true;
         }
     }
 }
