@@ -42,6 +42,8 @@
             this.miny_dek = new System.Windows.Forms.TextBox();
             this.maxy_dek = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.rrr = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +78,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dek_x.AutoSize = true;
-            this.dek_x.Location = new System.Drawing.Point(12, 533);
+            this.dek_x.Location = new System.Drawing.Point(-2, 41);
             this.dek_x.Name = "dek_x";
             this.dek_x.Size = new System.Drawing.Size(44, 20);
             this.dek_x.TabIndex = 3;
@@ -88,7 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dek_y.AutoSize = true;
-            this.dek_y.Location = new System.Drawing.Point(145, 533);
+            this.dek_y.Location = new System.Drawing.Point(115, 41);
             this.dek_y.Name = "dek_y";
             this.dek_y.Size = new System.Drawing.Size(44, 20);
             this.dek_y.TabIndex = 4;
@@ -101,7 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ekr_x.AutoSize = true;
-            this.ekr_x.Location = new System.Drawing.Point(493, 533);
+            this.ekr_x.Location = new System.Drawing.Point(270, 44);
             this.ekr_x.Name = "ekr_x";
             this.ekr_x.Size = new System.Drawing.Size(40, 20);
             this.ekr_x.TabIndex = 5;
@@ -113,7 +115,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ekr_y.AutoSize = true;
-            this.ekr_y.Location = new System.Drawing.Point(560, 533);
+            this.ekr_y.Location = new System.Drawing.Point(339, 44);
             this.ekr_y.Name = "ekr_y";
             this.ekr_y.Size = new System.Drawing.Size(40, 20);
             this.ekr_y.TabIndex = 6;
@@ -169,11 +171,30 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "Диапазон у(в дек)";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(700, 285);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(35, 27);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // rrr
+            // 
+            this.rrr.AutoSize = true;
+            this.rrr.Location = new System.Drawing.Point(706, 335);
+            this.rrr.Name = "rrr";
+            this.rrr.Size = new System.Drawing.Size(50, 20);
+            this.rrr.TabIndex = 18;
+            this.rrr.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 562);
+            this.Controls.Add(this.rrr);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.maxy_dek);
             this.Controls.Add(this.miny_dek);
@@ -189,7 +210,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
-            
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -211,6 +231,8 @@
         private TextBox miny_dek;
         private TextBox maxy_dek;
         private Label label4;
+        private TextBox textBox1;
+        private Label rrr;
     }
 }
 
