@@ -34,15 +34,17 @@ namespace Plot
         }
         private int pix_in_one_x = 1;
         private int pix_in_one_y = 1;
-        public Koordinate(double x_dek, double y_dek, int x_ekr, int y_ekr)
+        public Koordinate(double x_dek, double y_dek, int x_ekr, int y_ekr,int pix_in_one_x,int pix_in_one_y)
         {
             X_dek = x_dek;
             Y_dek = y_dek;
             X_ekr = x_ekr;
             Y_ekr = y_ekr;
+            this.pix_in_one_x = pix_in_one_x;
+            this.pix_in_one_y = pix_in_one_y;
             
         }
-       publiс int Convert_To_X_ekr(double x_dek,string minx_dek,string maxx_dek,PictureBox pic)
+       public int Convert_To_X_ekr(double x_dek,string minx_dek,string maxx_dek,PictureBox pic)
         {
             if (Math.Abs(Convert.ToDouble(maxx_dek)) > Math.Abs(Convert.ToDouble(minx_dek)))
             {
@@ -102,4 +104,3 @@ namespace Plot
 
     }
 }
-//

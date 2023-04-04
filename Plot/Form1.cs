@@ -23,15 +23,7 @@
         private void pic_MouseMove(object sender, MouseEventArgs e)
         {
             
-            /*if (Math.Abs(Convert.ToDouble(maxx_dek.Text)) > Math.Abs(Convert.ToDouble(minx_dek.Text)))
-            {
-                pix_in_one_x = Convert.ToInt32(Convert.ToDouble(pic.Size.Width) / (2*Math.Abs(Convert.ToDouble(maxx_dek.Text))+ 1));
-            }
-            else
-            {
-                pix_in_one_x = Convert.ToInt32(Convert.ToDouble(pic.Size.Width) / (2 * Math.Abs(Convert.ToDouble(minx_dek.Text)) + 1));
-            }*/
-            //int pix_in_one_y = Convert.ToInt32(Convert.ToDouble(pic.Size.Height) / (Convert.ToDouble(maxy_dek.Text) - Convert.ToDouble(miny_dek.Text) + 1));
+            
             ekr_y.Text = e.Y.ToString();
             dek_y.Text =Koord.Convert_To_Y_dek(e.Y,miny_dek.Text,maxy_dek.Text,pic).ToString();
             ekr_x.Text = e.X.ToString();
