@@ -211,7 +211,7 @@
             }
         }
 
-        public void DrawArea(double a, double b)
+        public void DrawArea(double a, double b, int n)
         {
             if (_graphics == null)
             {
@@ -223,7 +223,7 @@
             var endX = Converter.XCrt2Scr(b);
             var y0 = Converter.YCrt2Scr(0.0);
 
-            var points = new List<PointF> ();
+            var points = new List<PointF> { new PointF(startX, y0) };
 
             for (var i = startX; i < endX; i += 1)
             {
@@ -235,6 +235,19 @@
             points.Add(new PointF(endX, y0));
 
             _graphics.FillPolygon(brush, points.ToArray());
+
+            _pen.Color = Color.Black;
+            _pen.Width = 1;
+            var h = (double)(b - a) / n;
+
+            for (var i = 0; i <= n; i += 1)
+            {
+                _graphics.DrawLine(
+                    _pen,
+                    new PointF(Converter.XCrt2Scr((float)a + i * h), y0),
+                    new PointF(Converter.XCrt2Scr((float)a + i * h), Converter.YCrt2Scr(Function(a + i * h)))
+                );
+            }
         }
 
         public void Repaint()

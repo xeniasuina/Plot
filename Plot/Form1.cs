@@ -124,7 +124,7 @@ namespace Plot
             var b = Convert.ToDouble(bBox.Text);
             var n = Convert.ToInt32(nBox.Text);
 
-            _painter.DrawArea(a, b);
+            _painter.DrawArea(a, b, n);
 
             var selected = typeCombo.SelectedItem.ToString();
             var result = 0.0;
